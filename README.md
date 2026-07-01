@@ -1,4 +1,4 @@
-# Leetcode-Solutions# LeetCode Solutions & DSA Concepts
+# Leetcode-Solutions
 
 This repository contains my solutions to the LeetCode problems I have completed throughout my Data Structures and Algorithms (DSA) journey. Each solution is written with clean, readable code and is accompanied by the core concepts, algorithms, and problem-solving techniques used to solve it.
 
