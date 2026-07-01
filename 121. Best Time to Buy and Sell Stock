@@ -1,0 +1,44 @@
+# Intuition
+The maximum profit depends on buying at the lowest price before selling. Instead of checking every possible pair of buy and sell days, I keep track of the lowest price seen so far. At each day, I calculate the profit if I sell on that day and update the maximum profit whenever I find a better one.
+
+# Approach
+- Initialize `lowest_price` with the first day's price.
+- Initialize `max_profit` as `0`.
+- Traverse the array once.
+- If the current price is lower than `lowest_price`, update `lowest_price`.
+- Otherwise, calculate the profit by subtracting `lowest_price` from the current price.
+- If the calculated profit is greater than `max_profit`, update `max_profit`.
+- After traversing the entire array, return `max_profit`.
+
+# Complexity
+- **Time complexity:** `O(n)`
+- **Space complexity:** `O(1)`
+# Code
+```cpp []
+class Solution {
+public:
+    int maxProfit(vector<int>& prices) {
+        int max_profit = 0;
+        int lowest_price = prices[0];
+
+        for (int i = 0; i < prices.size(); i++) {
+                
+                
+                if(lowest_price > prices[i]){
+                    lowest_price = prices[i];
+                }
+                
+            
+
+                int profit = prices[i] - lowest_price;
+
+                if (profit > max_profit) {
+                    max_profit = profit;
+                }
+            
+        }
+
+        return max_profit;
+    }
+};
+```
