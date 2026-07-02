@@ -1,0 +1,51 @@
+# Intuition
+
+The number is represented as a vector of digits, so converting it into an integer is not a good approach because it may overflow for very large inputs. Instead, we simulate the manual addition process. Starting from the last digit, if a digit is less than `9`, we simply increment it and stop. If a digit is `9`, it becomes `0` and the carry is propagated to the previous digit. If every digit is `9`, we insert a leading `1` at the beginning of the vector.
+
+# Approach
+
+- Traverse the vector from **right to left**.
+- If the current digit is **less than `9`**, increment it by `1`, mark the increment as completed, and stop the loop.
+- If the current digit is **`9`**, change it to `0` and continue to the previous digit.
+- After the loop, if no digit was incremented, it means every digit was `9`, so insert `1` at the beginning of the vector.
+- Return the modified vector.
+
+# Complexity
+
+- **Time complexity:** `O(n)`
+  - In the worst case, every digit is visited once.
+
+- **Space complexity:** `O(1)`
+  - Only constant extra space is used.
+
+# Code
+
+```cpp
+class Solution {
+public:
+    vector<int> plusOne(vector<int>& digits) {
+        bool incremented = false;
+
+        // Traverse from the last digit to the first
+        for (int i = digits.size() - 1; i >= 0; i--) {
+
+            // If the digit is less than 9, increment it and stop
+            if (digits[i] < 9) {
+                digits[i]++;
+                incremented = true;
+                break;
+            }
+
+            // If the digit is 9, set it to 0 and carry to the left
+            digits[i] = 0;
+        }
+
+        // If all digits were 9, add a leading 1
+        if (!incremented) {
+            digits.insert(digits.begin(), 1);
+        }
+
+        return digits;
+    }
+};
+```
