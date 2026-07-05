@@ -1,0 +1,56 @@
+# Intuition
+
+The goal is to move all `0`s to the end while maintaining the relative order of the non-zero elements. Instead of shifting elements multiple times whenever a zero is found, we can keep track of the next position where a non-zero element should be placed.
+
+We use two pointers:
+
+* **read**: Traverses every element in the array.
+* **write**: Points to the position where the next non-zero element should be placed.
+
+Whenever `read` finds a non-zero value, we swap it with the element at `write` and increment `write`. As non-zero elements are moved to the front, zeros are naturally pushed toward the end.
+
+# Approach
+
+1. Initialize `write = 0`.
+2. Traverse the array using the `read` pointer.
+3. If `nums[read]` is non-zero:
+
+   * Swap `nums[read]` with `nums[write]`.
+   * Increment `write`.
+4. Continue until all elements have been processed.
+
+This guarantees that:
+
+* All non-zero elements remain in their original relative order.
+* All zeros end up at the end of the array.
+* The operation is performed in-place.
+
+# Complexity
+
+* **Time complexity:** `O(n)`
+
+  We traverse the array exactly once.
+
+* **Space complexity:** `O(1)`
+
+  No extra data structure is used; the modifications are done in-place.
+
+# Code
+
+```cpp
+class Solution {
+public:
+    void moveZeroes(vector<int>& nums) {
+
+        int write = 0;
+
+        for (int read = 0; read < nums.size(); read++) {
+
+            if (nums[read] != 0) {
+                swap(nums[read], nums[write]);
+                write++;
+            }
+        }
+    }
+};
+```
